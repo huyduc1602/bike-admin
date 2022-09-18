@@ -1,0 +1,14 @@
+.wrapper {
+    display: flex;
+    height: 100%;
+}
+.container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 0 var(--default-layout-horizontal-spacer) 0;
+    padding-top: 10px;
+}
+.content {
+    flex: 1;
+}
