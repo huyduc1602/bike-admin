@@ -57,6 +57,34 @@
         border-color: var(--primary);
     }
 }
+.primary {
+    color: var(--white);
+    background-color: var(--primary);
+    border-color: var(--primary);
+    &:hover {
+        background: linear-gradient(
+                0deg,
+                rgba(0, 0, 0, 0.06),
+                rgba(0, 0, 0, 0.06)
+            ),
+            #e45656;
+        border-color: var(#e45656);
+    }
+}
+.green {
+    color: var(--white);
+    background-color: var(--green);
+    border-color: var(--green);
+    &:hover {
+        background: linear-gradient(
+                0deg,
+                rgba(0, 0, 0, 0.06),
+                rgba(0, 0, 0, 0.06)
+            ),
+            #91fe2c;
+        border-color: var(#91fe2c);
+    }
+}
 .outline {
     border-color: var(--primary);
     color: var(--primary);

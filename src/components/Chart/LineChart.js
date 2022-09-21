@@ -60,8 +60,8 @@ function LineChar() {
                         },
                     ],
                 }}
-                height={400}
-                width={600}
+                height={460}
+                width={720}
                 options={{
                     maintainAspectRatio: false,
                 }}

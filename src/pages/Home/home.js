@@ -19,7 +19,7 @@ function Home() {
                 <div className={cx('charts')}>
                     <div className={cx('listUser')}>
                         <h1>List New User</h1>
-                        <Table data={listCustomers} />
+                        <Table listAll data={listCustomers} />
                     </div>
                     <div className={cx('charUser')}>
                         <h1>Chart</h1>

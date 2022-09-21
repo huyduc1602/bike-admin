@@ -6,7 +6,6 @@
 
 #listUser td,
 #listUser th {
-    border: 1px solid #ddd;
     padding: 8px;
 }
 
@@ -24,4 +23,19 @@
     text-align: left;
     background-color: #04aa6d;
     color: white;
+}
+.wallet {
+    display: flex;
+    flex: 1;
+    justify-content: space-between;
+    text-align: center;
+    align-items: center;
+    border: none;
+}
+.coin {
+    background-color: #f5dd0b;
+    align-items: center;
+    text-align: center;
+    width: 50px;
+    border-radius: 20%;
 }
