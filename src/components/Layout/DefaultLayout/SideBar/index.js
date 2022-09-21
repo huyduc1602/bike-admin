@@ -28,15 +28,12 @@ function Sidebar() {
                     </Link>
                 </div>
                 <div className={cx('content')}>
-                    {links.map((item) => (
-                        <div className={cx('title')} key={item.title}>
+                    {links.map((item, index) => (
+                        <div className={cx('title')} key={index}>
                             <span className={cx('title')}>{item.title}</span>
-                            {item.links.map((link) => (
-                                <Link to={link.link}>
-                                    <div
-                                        className={cx('links')}
-                                        key={link.name}
-                                    >
+                            {item.links.map((link, index) => (
+                                <Link to={link.link} key={index}>
+                                    <div className={cx('links')}>
                                         {window.location.pathname ==
                                         link.link ? (
                                             <span className={cx('tagActive')}>

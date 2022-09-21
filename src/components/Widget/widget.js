@@ -1,7 +1,14 @@
 import styles from './Widget.module.scss';
 import classNames from 'classnames/bind';
 
-import { customer, driver, invoice, order } from '~/data/data';
+import {
+    customer,
+    driver,
+    invoice,
+    listCustomers,
+    listDriver,
+    order,
+} from '~/data/data';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -10,12 +17,11 @@ import {
     faFileInvoice,
     faUser,
 } from '@fortawesome/free-solid-svg-icons';
+import { useState } from 'react';
 const cx = classNames.bind(styles);
 
 function Widget({ type }) {
-    const amount = 100;
     const diff = 20;
-
     let data;
     switch (type) {
         case 'customer':
@@ -24,6 +30,8 @@ function Widget({ type }) {
                 isMoney: false,
                 link: 'See all Customers',
                 icon: faUser,
+                links: '/customers',
+                amount: listCustomers.length,
             };
             break;
         case 'order':
@@ -32,6 +40,8 @@ function Widget({ type }) {
                 isMoney: true,
                 link: 'See all Orders',
                 icon: faCartShopping,
+                links: '/orders',
+                amount: '100',
             };
             break;
         case 'invoice':
@@ -40,6 +50,8 @@ function Widget({ type }) {
                 isMoney: true,
                 link: 'See all users',
                 icon: faFileInvoice,
+                links: '/invoices',
+                amount: '100',
             };
             break;
         case 'driver':
@@ -48,6 +60,8 @@ function Widget({ type }) {
                 isMoney: false,
                 link: 'See all Dirver',
                 icon: faUser,
+                links: '/drivers',
+                amount: listDriver.length,
             };
             break;
         default:
@@ -59,9 +73,11 @@ function Widget({ type }) {
             <div className={cx('left')}>
                 <span className={cx('title')}>{data.title}</span>
                 <span className={cx('counter')}>
-                    {data.isMoney && '$'} {amount}
+                    {data.isMoney && '$'} {data.amount}
                 </span>
-                <span className={cx('link')}>{data.link}</span>
+                <span className={cx('link')}>
+                    <a href={data.links}>{data.link}</a>
+                </span>
             </div>
             <div className={cx('right')}>
                 <div className={cx('percentage')}>
