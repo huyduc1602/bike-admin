@@ -8,25 +8,34 @@ import { faBars, faHome } from '@fortawesome/free-solid-svg-icons';
 import LoginGoogle from '../Login';
 import LogoutGoogle from '../Logout';
 import SessionStorageKey from '../../../../utils/SessionStorageKey';
+import { gapi } from 'gapi-script';
+
+const clientId =
+    '489362668767-85aqns3bpjp20t3ieg5u27jn3mhd6lvm.apps.googleusercontent.com';
 const cx = classNames.bind(styles);
 
 function Header({ user }) {
-    // useEffect(() => {
-    //     user = sessionStorage.getItem('currentUser');
-    //     if (user) {
-    //         console.log('user header:' + user);
-    //         setAvatar(user.photoURL);
-    //     }
-    // }, []);
+    useEffect(() => {
+        function start() {
+            gapi.client.init({
+                clientId: clientId,
+                scope: 'email',
+            });
+        }
 
+        gapi.load('client:auth2', start);
+    });
     const handleSetUser = (userData) => {
-        console.log('userData: ' + userData);
         if (userData) {
             sessionStorage.setItem(
                 SessionStorageKey.USER_INFO,
                 JSON.stringify(userData),
             );
-            // window.location.reload();
+            sessionStorage.setItem(
+                SessionStorageKey.ACESS_TOKEN,
+                JSON.stringify(userData.accessToken),
+            );
+            window.location.reload();
         }
     };
 

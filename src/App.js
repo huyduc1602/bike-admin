@@ -2,14 +2,20 @@ import { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { DefaultLayout } from '~/components/Layout';
 import { publicRoutes } from './routes/route.';
+import SessionStorageKey from './utils/SessionStorageKey';
 
 function App() {
     const [currentUser, setCurrentUser] = useState();
     useEffect(() => {
         const fetchData = async () => {
-            if (sessionStorage.getItem('currentUser') != 'undefined') {
+            if (
+                sessionStorage.getItem(SessionStorageKey.USER_INFO) !=
+                'undefined'
+            ) {
                 setCurrentUser(
-                    JSON.parse(sessionStorage.getItem('currentUser')),
+                    JSON.parse(
+                        sessionStorage.getItem(SessionStorageKey.USER_INFO),
+                    ),
                 );
             }
         };
