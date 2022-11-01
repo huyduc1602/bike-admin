@@ -128,7 +128,6 @@ export const listDriver = [
         FullName: 'Tran Van A',
         Email: 'XYZ@gmail.com',
         Phone: '0123456789',
-        Address: ' District 1',
         Area: 'Phu Huu',
         NumCar: '3',
         Wallet: '999',
@@ -141,7 +140,6 @@ export const listDriver = [
         FullName: 'Tran Van A',
         Email: 'XYZ@gmail.com',
         Phone: '0123456789',
-        Address: ' District 9',
         Area: 'Phu Huu',
         NumCar: '3',
         Wallet: '999',
@@ -154,7 +152,6 @@ export const listDriver = [
         FullName: 'Tran Van A',
         Email: 'XYZ@gmail.com',
         Phone: '0123456789',
-        Address: ' District 12',
         Area: 'Phu Huu',
         NumCar: '3',
         Wallet: '999',
@@ -167,7 +164,6 @@ export const listDriver = [
         FullName: 'Tran Van A',
         Email: 'XYZ@gmail.com',
         Phone: '0123456789',
-        Address: ' District Phu Nhuan',
         Area: 'Phu Huu',
         NumCar: '3',
         Wallet: '999',
@@ -180,7 +176,6 @@ export const listDriver = [
         FullName: 'Tran Van A',
         Email: 'XYZ@gmail.com',
         Phone: '0123456789',
-        Address: ' District 9',
         Area: 'Phu Huu',
         NumCar: '3',
         Wallet: '999',
@@ -220,14 +215,6 @@ export const order = [
         icon: faCartShopping,
     },
 ];
-export const invoice = [
-    {
-        title: 'Invoice',
-        isMoney: false,
-        link: 'See all users',
-        icon: faFileInvoice,
-    },
-];
 export const links = [
     {
         title: 'Dashboard',
@@ -239,39 +226,29 @@ export const links = [
             },
         ],
     },
+
     {
         title: 'Manager',
         links: [
             {
-                name: 'Areas',
-                link: '/areas',
+                name: 'Stations',
+                link: '/station',
                 icon: faLayerGroup,
             },
-
             {
-                name: 'Invoices',
+                name: 'Routes',
                 link: '/invoices',
-                icon: faFileInvoice,
-            },
-            {
-                name: 'Orders',
-                link: '/orders',
                 icon: faFileInvoice,
             },
         ],
     },
     {
-        title: 'Customers',
+        title: 'Customer',
         links: [
             {
                 name: 'Customers',
                 link: '/customers',
                 icon: faUserTie,
-            },
-            {
-                name: 'Booking',
-                link: '/bookings',
-                icon: faCartShopping,
             },
         ],
     },
@@ -284,15 +261,49 @@ export const links = [
                 icon: faIdCard,
             },
             {
-                name: 'Cars',
-                link: '/cars',
+                name: 'Vehicles',
+                link: '/vehicles',
                 icon: faCar,
             },
-            {
-                name: 'Groups',
-                link: '/groups',
-                icon: faUserGroup,
-            },
         ],
+    },
+];
+export const listStation = [
+    {
+        Id: '1',
+        Name: 'Trạm A',
+        Address:
+            '216 Phan Xích Long, Phường 7, Phú Nhuận, Thành phố Hồ Chí Minh, Việt Nam',
+        Img: 'https://lh5.googleusercontent.com/p/AF1QipMJPqiXb2qcBoZnwSHUo-8AfXk3nA-oyQysDS0b=w408-h271-k-no',
+        Latitude: '10.7974022',
+        Longtitude: '106.6877738',
+        Status: 'OPEN',
+    },
+    {
+        Id: '2',
+        Name: 'Trạm B',
+        Address: 'Thức Coffee',
+        Img: 'https://lh5.googleusercontent.com/p/AF1QipMJPqiXb2qcBoZnwSHUo-8AfXk3nA-oyQysDS0b=w408-h271-k-no',
+        Latitude: '10.79982659624308',
+        Longtitude: '106.69176020335644',
+        Status: 'OPEN',
+    },
+    {
+        Id: '3',
+        Name: 'Trạm C',
+        Address: 'Co.op Mart Rạch Miễu',
+        Img: 'https://lh5.googleusercontent.com/p/AF1QipMJPqiXb2qcBoZnwSHUo-8AfXk3nA-oyQysDS0b=w408-h271-k-no',
+        Latitude: '10.798930796495693',
+        Longtitude: '106.68905653678921',
+        Status: 'OPEN',
+    },
+    {
+        Id: '4',
+        Name: 'Trạm D',
+        Address: 'Midway Cafe',
+        Img: 'https://lh5.googleusercontent.com/p/AF1QipMJPqiXb2qcBoZnwSHUo-8AfXk3nA-oyQysDS0b=w408-h271-k-no',
+        Latitude: '10.795653200562422',
+        Longtitude: '106.69207133959776',
+        Status: 'OPEN',
     },
 ];

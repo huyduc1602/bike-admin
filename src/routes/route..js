@@ -1,6 +1,6 @@
-import Area from '~/pages/area';
+import Station from '~/pages/Station/station';
 import Booking from '~/pages/booking';
-import Car from '~/pages/car';
+import Vehicle from '~/pages/vehicle';
 import Customer from '~/pages/Customer/customer';
 import Driver from '~/pages/Driver/driver';
 import Group from '~/pages/group';
@@ -12,11 +12,11 @@ import Order from '~/pages/order';
 const publicRoutes = [
     { path: '/', component: Home },
     { path: '/login', component: SignIn },
-    { path: '/areas', component: Area },
+    { path: '/station', component: Station },
     { path: '/orders', component: Order },
     { path: '/bookings', component: Booking },
     { path: '/drivers', component: Driver },
-    { path: '/cars', component: Car },
+    { path: '/vehicles', component: Vehicle },
     { path: '/groups', component: Group },
     { path: '/customers', component: Customer },
     { path: '/invoices', component: Invoice },

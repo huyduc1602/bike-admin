@@ -15,13 +15,8 @@ function Sidebar() {
                     <Link to={'/'}>
                         <span className={cx('logoHeader')}>
                             <span className={cx('logoContent')}>
-                                <img
-                                    className={cx('logoImg')}
-                                    src={images.logo}
-                                    alt={'F-Go'}
-                                ></img>
                                 <h1>
-                                    <span>F</span>Go
+                                    <span>Bike</span>Ke
                                 </h1>
                             </span>
                         </span>
@@ -65,7 +60,7 @@ function Sidebar() {
                     ))}
                 </div>
                 <div>
-                    <span>HieuTCM</span>
+                    <span>BikeKe @2022</span>
                 </div>
             </div>
         </aside>

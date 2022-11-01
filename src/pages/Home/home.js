@@ -13,8 +13,8 @@ function Home() {
                 <div className={cx('widgets')}>
                     <Widget type={'customer'} />
                     <Widget type={'driver'} />
-                    <Widget type={'order'} />
-                    <Widget type={'invoice'} />
+                    {/* <Widget type={'order'} /> */}
+                    {/* <Widget type={'invoice'} /> */}
                 </div>
                 <div className={cx('charts')}>
                     <div className={cx('listUser')}>

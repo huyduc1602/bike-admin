@@ -1,11 +1,11 @@
 import { Link } from 'react-router-dom';
 
-function Area() {
+function Vehicle() {
     return (
         <div>
-            <div>Area</div>
+            <div>Vehicle</div>
         </div>
     );
 }
 
-export default Area;
+export default Vehicle;
