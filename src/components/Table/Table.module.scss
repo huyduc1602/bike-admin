@@ -1,23 +1,23 @@
-#listUser {
+.listUser {
     font-family: Arial, Helvetica, sans-serif;
     border-collapse: collapse;
     width: 100%;
 }
 
-#listUser td,
-#listUser th {
+.listUser td,
+.listUser th {
     padding: 8px;
 }
 
-#listUser tr:nth-child(even) {
+.listUser tr:nth-child(even) {
     background-color: #f2f2f2;
 }
 
-#listUser tr:hover {
+.listUser tr:hover {
     background-color: #ddd;
 }
 
-#listUser th {
+.listUser th {
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;
@@ -38,4 +38,17 @@
     text-align: center;
     width: 50px;
     border-radius: 20%;
+}
+#listStation {
+    tr {
+        td {
+            .img-place {
+                width: auto;
+                height: 50px;
+            }
+            &:last-child {
+                display: flex;
+            }
+        }
+    }
 }
