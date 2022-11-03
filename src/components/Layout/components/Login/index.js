@@ -19,10 +19,11 @@ function LoginGoogle(props) {
             name: res.profileObj.name,
             email: res.profileObj.email,
             PhotoURL: res.profileObj.imageUrl,
-            accessToken: res.accessToken,
+            tokenId: res.tokenId,
         };
         setUser(user);
         console.log('user:', user);
+        console.log('token id:', res.tokenId);
     };
     const onFailure = (res) => {
         console.log('Login failed] res:', res);

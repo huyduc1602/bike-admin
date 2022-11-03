@@ -9,6 +9,7 @@ import LoginGoogle from '../Login';
 import LogoutGoogle from '../Logout';
 import SessionStorageKey from '../../../../utils/SessionStorageKey';
 import { gapi } from 'gapi-script';
+import * as authJwt from '../../../../api/auth/authJwt';
 
 const clientId =
     '489362668767-85aqns3bpjp20t3ieg5u27jn3mhd6lvm.apps.googleusercontent.com';
@@ -25,17 +26,26 @@ function Header({ user }) {
 
         gapi.load('client:auth2', start);
     });
+    const getAccessToken = async (tokenId) => {
+        const result = await authJwt.getTokenApi(JSON.stringify(tokenId));
+
+        sessionStorage.setItem(
+            SessionStorageKey.ACESS_TOKEN,
+            result.tokenType + ' ' + result.accessToken,
+        );
+    };
     const handleSetUser = (userData) => {
         if (userData) {
             sessionStorage.setItem(
                 SessionStorageKey.USER_INFO,
                 JSON.stringify(userData),
             );
-            sessionStorage.setItem(
-                SessionStorageKey.ACESS_TOKEN,
-                JSON.stringify(userData.accessToken),
-            );
-            window.location.reload();
+            // sessionStorage.setItem(
+            //     SessionStorageKey.ID_TOKEN,
+            //     userData.tokenId,
+            // );
+            getAccessToken(userData.tokenId);
+            // window.location.reload();
         }
     };
 

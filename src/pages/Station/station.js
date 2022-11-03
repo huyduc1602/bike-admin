@@ -5,13 +5,29 @@ import styles from './Station.module.scss';
 import classNames from 'classnames/bind';
 import { useState, useEffect } from 'react';
 import IFrame from '../../components/Layout/components/Frame';
+import * as stationListApi from '../../api/station/stationList';
 
 const cx = classNames.bind(styles);
 
 function Station() {
+    const [loading, setLoading] = useState(false);
+    const [listResult, setListResult] = useState([]);
     const [iframe, setIframe] = useState(
         '<iframe src="https://maps.google.com/maps?q=10.305385,77.923029&hl=es;z=14&amp;output=embed"></iframe>',
     );
+    useEffect(() => {
+        const fetchApi = async () => {
+            setLoading(true);
+
+            const result = await stationListApi.listStaionApi();
+
+            setListResult(result);
+            setLoading(false);
+        };
+
+        fetchApi();
+    }, []);
+
     // scrollToID function
     const scrollToID = (id) => {
         const section = document.querySelector(id);
