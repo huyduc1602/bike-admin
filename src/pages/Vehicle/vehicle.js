@@ -129,11 +129,15 @@ function Vehicle() {
         });
     }, []);
     useEffect(() => {
+        console.log('sortValue:' + sortValue);
         if (sortValue == '') {
             searchParams.delete('sort');
+            setSearchParams(searchParams);
         } else {
-            getListApi();
+            searchParams.set('sort', sortValue);
+            setSearchParams(searchParams);
         }
+        getListApi();
     }, [sortValue]);
 
     if (navigate) {
