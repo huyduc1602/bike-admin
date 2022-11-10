@@ -69,8 +69,10 @@ function Vehicle() {
             try {
                 const { data } = await commonApi.active(`bike/activate/${id}`);
                 if (data) {
-                    alert('Sucesss!');
-                    getListApi();
+                    alert('Successful enable!');
+                    window.location.reload();
+                } else {
+                    alert('Unable to enable!');
                 }
             } catch (e) {
                 console.error(e);
@@ -85,8 +87,10 @@ function Vehicle() {
                     `bike/deactivate/${id}`,
                 );
                 if (data) {
-                    alert('Sucesss!');
-                    getListApi();
+                    alert('Successful disable!');
+                    window.location.reload();
+                } else {
+                    alert('Unable to disable!');
                 }
             } catch (e) {
                 console.error(e);
