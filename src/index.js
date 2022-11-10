@@ -1,9 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
+import 'bootstrap/dist/css/bootstrap.css';
 import GlobalStyles from './components/GlabalStyles';
 import reportWebVitals from './reportWebVitals';
-import { Provider } from 'react-redux';
+import '~/interceptors/axios';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

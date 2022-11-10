@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { GoogleLogin } from 'react-google-login';
 import { refreshTokenSetup } from '~/utils/refreshToken';
 
+// const clientId =
+//     '489362668767-85aqns3bpjp20t3ieg5u27jn3mhd6lvm.apps.googleusercontent.com';
 const clientId =
-    '489362668767-85aqns3bpjp20t3ieg5u27jn3mhd6lvm.apps.googleusercontent.com';
+    '518656647195-jrug4gar0b1u63jtnnbgkhgpnt2tv2h4.apps.googleusercontent.com';
 
 function LoginGoogle(props) {
     const setUser = (user) => {

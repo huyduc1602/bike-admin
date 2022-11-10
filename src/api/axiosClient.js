@@ -1,14 +1,21 @@
 import axios from 'axios';
 // import { Common, SessionStorageKey } from '@/constants';
 import Common from '../utils/Common';
-import SessionStorageKey from '../utils/SessionStorageKey';
+import SessionStorageKey from '../utils/LocalStorageKey';
 
-const apiBaseUrl = process.env.API_BASE_URL;
+const apiBaseUrl = 'https://another-bikeke2.herokuapp.com/api/v1/';
 
 const axiosClient = axios.create({
     baseURL: apiBaseUrl,
     timeout: 40000,
-    headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+    headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+        'Access-Control-Allow-Credentials': true,
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET,HEAD,OPTIONS,POST,PUT',
+        'Access-Control-Allow-Headers': 'content-type,Authorization',
+    },
 });
 
 const handleError = (error) => {
@@ -21,20 +28,10 @@ const handleError = (error) => {
 axiosClient.interceptors.request.use(
     function (config) {
         // Do something before request is sent
-        const accountInfo = sessionStorage.getItem(SessionStorageKey.USER_INFO)
-            ? JSON.parse(sessionStorage.getItem(SessionStorageKey.USER_INFO))
-            : {};
-        if (accountInfo?.accessToken) {
-            config.headers['Authorization'] =
-                accountInfo?.tokenType + ' ' + accountInfo.accessToken;
+        const accessToken = localStorage.getItem(SessionStorageKey.ACESS_TOKEN);
+        if (accessToken) {
+            config.headers['Authorization'] = accessToken;
         }
-
-        // set locale to header
-        const locale = localStorage.getItem(SessionStorageKey.LOCALE)
-            ? localStorage.getItem(SessionStorageKey.LOCALE)
-            : Common.DEFAULT_LOCALE;
-        config.headers['locale'] = locale;
-
         return config;
     },
     function (error) {

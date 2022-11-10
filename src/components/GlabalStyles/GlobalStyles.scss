@@ -47,3 +47,17 @@ a[href] {
     color: var(--text-color);
     text-decoration: none;
 }
+.form-control,
+.form-select {
+    font-size: inherit;
+}
+.loading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.btn-create {
+    padding: 10px 20px;
+    font-size: inherit;
+}

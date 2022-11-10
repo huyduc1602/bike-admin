@@ -26,10 +26,7 @@ export function signInWithGoogle() {
 export function Logout() {
     return getAuth(app)
         .signOut()
-        .then(
-            window.location.reload(),
-            sessionStorage.removeItem('currentUser'),
-        )
+        .then(window.location.reload(), localStorage.removeItem('currentUser'))
         .catch((err) => {
             console.log(err);
         });

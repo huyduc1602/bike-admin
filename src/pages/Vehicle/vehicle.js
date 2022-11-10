@@ -7,7 +7,7 @@ import { Navigate, useSearchParams } from 'react-router-dom';
 import ReactLoading from 'react-loading';
 import commonApi from '~/api/commonApi';
 
-function Customer() {
+function Vehicle() {
     let page = 1;
     const [loading, setLoading] = useState(false);
     const [listResult, setListResult] = useState([]);
@@ -32,11 +32,11 @@ function Customer() {
         },
         {
             name: 'Ascending by Name',
-            value: 'account_name-asc',
+            value: 'name-asc',
         },
         {
             name: 'Descending by Name',
-            value: 'account_name-desc',
+            value: 'name-desc',
         },
     ];
     const setPage = (pageNumber) => {
@@ -51,12 +51,12 @@ function Customer() {
                     search: searchValue,
                     page: page,
                 };
-                const { data } = await commonApi.search(`customer/all`, params);
+                const { data } = await commonApi.search(`bike/all`, params);
                 console.log('axiosdata: ' + JSON.stringify(data));
-                if (data.accountDtoList) {
-                    setListResult(data.accountDtoList);
-                    setPageCount(data.totalPages);
+                if (data.bikeList) {
+                    setListResult(data.bikeList);
                 }
+                setPageCount(data.totalPages);
                 setLoading(false);
             } catch (e) {
                 console.error(e);
@@ -67,9 +67,7 @@ function Customer() {
     const onActive = (id) => {
         (async () => {
             try {
-                const { data } = await commonApi.active(
-                    `customer/activate/${id}`,
-                );
+                const { data } = await commonApi.active(`bike/activate/${id}`);
                 if (data) {
                     alert('Sucesss!');
                     getListApi();
@@ -84,7 +82,7 @@ function Customer() {
         (async () => {
             try {
                 const { data } = await commonApi.deactive(
-                    `customer/deactivate/${id}`,
+                    `bike/deactivate/${id}`,
                 );
                 if (data) {
                     alert('Sucesss!');
@@ -141,10 +139,11 @@ function Customer() {
     if (navigate) {
         return <Navigate to="/login" />;
     }
+
     return (
         <div>
             <div className="mt-5">
-                <h1>Customers</h1>
+                <h1>Vehicles</h1>
             </div>
             <Row className="my-3 py-2 w-100">
                 <Col className="col-md-3 col-xs-12">
@@ -177,7 +176,7 @@ function Customer() {
             </Row>
             <Table
                 data={listResult}
-                customer
+                vehicle
                 onActive={onActive}
                 onDeActive={onDeActive}
             ></Table>
@@ -199,4 +198,4 @@ function Customer() {
     );
 }
 
-export default Customer;
+export default Vehicle;

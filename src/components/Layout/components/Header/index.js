@@ -7,15 +7,16 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faHome } from '@fortawesome/free-solid-svg-icons';
 import LoginGoogle from '../Login';
 import LogoutGoogle from '../Logout';
-import SessionStorageKey from '../../../../utils/SessionStorageKey';
+import SessionStorageKey from '../../../../utils/LocalStorageKey';
 import { gapi } from 'gapi-script';
 import * as authJwt from '../../../../api/auth/authJwt';
 
 const clientId =
-    '489362668767-85aqns3bpjp20t3ieg5u27jn3mhd6lvm.apps.googleusercontent.com';
+    '518656647195-jrug4gar0b1u63jtnnbgkhgpnt2tv2h4.apps.googleusercontent.com';
 const cx = classNames.bind(styles);
 
 function Header({ user }) {
+    const [userInfo, setUserInfo] = useState({});
     useEffect(() => {
         function start() {
             gapi.client.init({
@@ -26,29 +27,22 @@ function Header({ user }) {
 
         gapi.load('client:auth2', start);
     });
-    const getAccessToken = async (tokenId) => {
-        const result = await authJwt.getTokenApi(JSON.stringify(tokenId));
+    const setAccessToken = (tokenId) => {
+        const result = authJwt.getTokenApi(tokenId);
 
-        sessionStorage.setItem(
-            SessionStorageKey.ACESS_TOKEN,
-            result.tokenType + ' ' + result.accessToken,
-        );
+        console.log('result: ' + result.tokenType + '-' + result.accessToken);
     };
     const handleSetUser = (userData) => {
         if (userData) {
-            sessionStorage.setItem(
+            localStorage.setItem(
                 SessionStorageKey.USER_INFO,
                 JSON.stringify(userData),
             );
-            // sessionStorage.setItem(
-            //     SessionStorageKey.ID_TOKEN,
-            //     userData.tokenId,
-            // );
-            getAccessToken(userData.tokenId);
-            // window.location.reload();
+            setAccessToken(userData.tokenId);
+            setUserInfo(userData);
+            console.log('userData: ' + JSON.stringify(userData));
         }
     };
-
     return (
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
@@ -61,6 +55,7 @@ function Header({ user }) {
                             src={user.PhotoURL}
                             alt={'avatar'}
                             referrerPolicy="no-referrer"
+                            id="avatar"
                         />
                         <h3>{user.name}</h3>
                         {/* <Button orange login onClick={Logout}>

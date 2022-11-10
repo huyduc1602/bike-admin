@@ -2,19 +2,21 @@ import { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { DefaultLayout } from '~/components/Layout';
 import { publicRoutes } from './routes/route.';
-import SessionStorageKey from './utils/SessionStorageKey';
+import SessionStorageKey from './utils/LocalStorageKey';
 
 function App() {
     const [currentUser, setCurrentUser] = useState();
+    const [token, setToken] = useState('');
     useEffect(() => {
+        const accessToken = localStorage.getItem('access_token');
+        setToken(accessToken);
         const fetchData = async () => {
             if (
-                sessionStorage.getItem(SessionStorageKey.USER_INFO) !=
-                'undefined'
+                localStorage.getItem(SessionStorageKey.USER_INFO) != 'undefined'
             ) {
                 setCurrentUser(
                     JSON.parse(
-                        sessionStorage.getItem(SessionStorageKey.USER_INFO),
+                        localStorage.getItem(SessionStorageKey.USER_INFO),
                     ),
                 );
             }

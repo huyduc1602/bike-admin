@@ -1,45 +1,51 @@
 import React, { useEffect, useState } from 'react';
-import { Link, Navigate } from 'react-router-dom';
-import { signInWithGoogle, auth, Logout } from '~/services/firebase';
-
-import classNames from 'classnames/bind';
 import styles from '../Login/Login.module.scss';
+import classNames from 'classnames/bind';
+import LoginGoogle from '~/components/Layout/components/Login';
+import SessionStorageKey from '~/utils/LocalStorageKey';
+import { gapi } from 'gapi-script';
+import * as authJwt from '~/api/auth/authJwt';
+import { Navigate, useNavigate } from 'react-router-dom';
 
+const clientId =
+    '518656647195-jrug4gar0b1u63jtnnbgkhgpnt2tv2h4.apps.googleusercontent.com';
 const cx = classNames.bind(styles);
-export default function SignIn() {
+
+function SignIn() {
     const [currentUser, setCurrentUser] = useState();
     const [token, setToken] = useState();
+    const [userInfo, setUserInfo] = useState({});
+    const navigate = useNavigate();
 
-    async function SignInGoogle() {
-        signInWithGoogle().then((result) => {
-            console.log('Result: ', result);
-            setToken(result.user.accessToken);
-            setCurrentUser(auth.currentUser);
-        });
-    }
     useEffect(() => {
-        const fetchData = async () => {
-            await setCurrentUser(auth.currentUser);
-        };
-        fetchData().catch((e) => {
-            console.log(e);
-        });
+        function start() {
+            gapi.client.init({
+                clientId: clientId,
+                scope: 'email',
+            });
+        }
 
-        //setCurrentUser(auth.currentUser);
-    }, []);
-    if (currentUser) {
-        var user = [
-            {
-                ID: currentUser.uid,
-                name: currentUser.displayName,
-                email: currentUser.email,
-                PhotoURL: currentUser.photoURL,
-            },
-        ];
-        sessionStorage.setItem('currentUser', JSON.stringify(auth.currentUser));
-        window.location.assign('/');
-    }
+        gapi.load('client:auth2', start);
+    });
+    const setAccessToken = (tokenId) => {
+        const result = authJwt.getTokenApi(tokenId);
 
+        console.log('result: ' + result.tokenType + '-' + result.accessToken);
+        window.location.href = '/';
+        return navigate('/');
+    };
+    const handleSetUser = (userData) => {
+        if (userData) {
+            localStorage.setItem(
+                SessionStorageKey.USER_INFO,
+                JSON.stringify(userData),
+            );
+            localStorage.setItem(SessionStorageKey.ID_TOKEN, userData.tokenId);
+            setAccessToken(userData.tokenId);
+            setUserInfo(userData);
+            console.log('userData: ' + JSON.stringify(userData));
+        }
+    };
     return (
         <center>
             <div className={cx('wrapper')}>
@@ -48,9 +54,7 @@ export default function SignIn() {
                         <div className={cx('content')}>
                             <h1>Login</h1>
                             {!currentUser && (
-                                <button onClick={SignInGoogle}>
-                                    Login By Google
-                                </button>
+                                <LoginGoogle handleSetUser={handleSetUser} />
                             )}
                             {currentUser && (
                                 <div>
@@ -64,3 +68,5 @@ export default function SignIn() {
         </center>
     );
 }
+
+export default SignIn;
