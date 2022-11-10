@@ -70,8 +70,10 @@ function Invoice() {
             try {
                 const { data } = await commonApi.active(`route/activate/${id}`);
                 if (data) {
-                    alert('Sucesss!');
-                    getListApi();
+                    alert('Successful enable!');
+                    window.location.reload();
+                } else {
+                    alert('Unable to enable!');
                 }
             } catch (e) {
                 console.error(e);
@@ -86,8 +88,10 @@ function Invoice() {
                     `route/deactivate/${id}`,
                 );
                 if (data) {
-                    alert('Sucesss!');
-                    getListApi();
+                    alert('Successful disable!');
+                    window.location.reload();
+                } else {
+                    alert('Unable to disable!');
                 }
             } catch (e) {
                 console.error(e);
